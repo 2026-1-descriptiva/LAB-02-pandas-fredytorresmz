@@ -25,9 +25,14 @@ def pregunta_12():
      # Cargar el archivo TSV
     df = pd.read_csv("files/input/tbl2.tsv", sep = "\t")
     
-    # Unir c5a y c5b con ':', luego agrupar por c0 y unir con ','
+     # Unir c5a y c5b con ':'
     df['c5'] = df['c5a'] + ':' + df['c5b'].astype(str)
-    variable = df.groupby('c0')['c5'].apply(lambda x: ','.join(x)).reset_index()
+    
+    # Ordenar por respectp a columna c0 para mantener el orden original y ordenado
+    #df = df.sort_values('c0')
+    
+    # Agrupar por columna c0 y unir con ','
+    variable = df.groupby('c0')['c5'].apply(lambda x: ','.join(x.sort_values())).reset_index()
     
     return variable
 
