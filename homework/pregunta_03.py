@@ -4,7 +4,7 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
-
+import pandas as pd
 
 def pregunta_03():
     """
@@ -21,3 +21,11 @@ def pregunta_03():
     Name: count, dtype: int64
 
     """
+     # Cargar el archivo TSV
+    df = pd.read_csv("files/input/tbl0.tsv", sep = "\t")
+    variable = df['c1'].value_counts().sort_index()
+    
+    return variable
+
+Resultado = pregunta_03()
+print("El resultado es: \n", Resultado)
